@@ -53,7 +53,7 @@ clc, clear all, close all
 % Fit RPM Range - UPDATE ACCORDINGLY!
 % this is the RPM range over which the fit will be the most accurate
 % set this range based on the anticipated RPM range
-FitRPMRange = [5000,12000];
+FitRPMRange = [4000,10000];
 
 % Call the APC propeller parsing script--in this script, you will be asked
 % to locate the specific .dat file in your files which you would like to 
@@ -67,7 +67,7 @@ fprintf('The propeller data is being fit in the following RPM range: [%d,%d]\n\n
 
 % Create the surface equations and inverse propulsor model (IPPM, Ref. [1]),
 % for your selected propeller at your identified range (see Line 57).
-Create_IPPM
+CreateRSE
 
 % Note: you may find that your results are not always perfect--please
 % review your fit levels and remember to correct for density when using the
