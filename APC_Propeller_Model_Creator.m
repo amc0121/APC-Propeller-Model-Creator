@@ -47,7 +47,7 @@
 % ***WE KINDLY REQUEST YOU REFERENCE THIS IF USED TO SUPPORT YOUR WORK!***
 %
 % clear workspace
-clc, clear all, close all
+clc, clear all, close all, warning('off')
 %------------------------
 
 % Fit RPM Range - UPDATE ACCORDINGLY!
@@ -76,3 +76,14 @@ CreateRSE
 % Note: extreme cases (e.g., low RPM, end conditions) may show large ratios
 % due to badly fit data--please observe your fit ratios "..._ratio" in the
 % FitComp table to determine whether the fit is sufficient for your needs!
+
+% for example, check your RPM range of interest
+ind = (FitComp.RPM>=FitRPMRange(1)&FitComp.RPM<=FitRPMRange(2));
+
+% create a table to view the fit goodness data (fitness)
+% Note: a ratio of 1 is a "perfect" fit to the interpolated data
+Fitness = table();
+Fitness.RPM = mean(FitComp.RPM_ratio(ind));
+Fitness.T = mean(rmoutliers(FitComp.T_ratio(ind)));
+Fitness.Q = mean(rmoutliers(FitComp.Q_ratio(ind)));
+Fitness.P = mean(rmoutliers(FitComp.P_ratio(ind)))
